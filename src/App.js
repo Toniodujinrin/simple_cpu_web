@@ -1,6 +1,7 @@
 import React,{ useState } from "react";
 import { isaData } from "./data";
 import { ALUCard } from "./components/alu_card";
+import { FormatCard } from "./components/format_card.jsx";
 import { SimpleCard } from "./components/simpl_card";
 import FP_ADDER from "./images/FP_ADDER.drawio.svg";
 import FP_MULTIPLIER from "./images/FP_MULTIPLIER.drawio.svg";
@@ -27,14 +28,17 @@ export default function App() {
     <div className="min-h-screen bg-slate-50 text-slate-900 p-6">
       <header className="max-w-6xl mx-auto mb-6">
         <div className="flex items-center justify-between">
-          <h1 className="text-3xl font-bold">16-bit CPU — Documentation</h1>
+          <h1 className="text-3xl font-bold">Simple_CPU_v1 — Documentation</h1>
           <nav className="space-x-3">
             <button className={`px-3 py-1 rounded ${selectedTab === 'ISA' ? 'bg-indigo-600 text-white' : 'bg-white'}`} onClick={() => setSelectedTab('ISA')}>ISA</button>
             <button className={`px-3 py-1 rounded ${selectedTab === 'ALU' ? 'bg-indigo-600 text-white' : 'bg-white'}`} onClick={() => setSelectedTab('ALU')}>ALU Deep Dive</button>
             <button className={`px-3 py-1 rounded ${selectedTab === 'BP' ? 'bg-indigo-600 text-white' : 'bg-white'}`} onClick={() => setSelectedTab('BP')}>Branch Prediction</button>
           </nav>
         </div>
-        <p className="text-sm text-slate-600 mt-2">This site documents the CPU design, ALU modules (including floating point), and the custom ISA.</p>
+        <p className="text-sm text-slate-600 mt-2">This is the documentation to the Simple_CPU v1 architecture. </p>
+        <p className="text-sm font-bold text-indigo-600 mt-2 ">Designed by Toni Odujinrin, todujiinr@gmail.com</p>
+        <button className="mt-4 px-4 py-2 mr-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition" onClick={() => window.open("https://github.com/Toniodujinrin/simple_alu", "_blank")}>{"See ALU Code <>"}</button>
+        <button className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition" onClick={() => window.open("https://github.com/Toniodujinrin/simple_alu", "_blank")}>{"See CPU Code <>"}</button>
       </header>
 
       <main className="max-w-6xl mx-auto">
@@ -50,6 +54,18 @@ export default function App() {
           </div>
 
           {selectedTab === "ISA" && (
+            <>
+            <div className="mb-6">
+                <h2 className="text-xl font-semibold mb-3">Instruction Formats</h2>
+                <div className="space-y-6">
+                  <FormatCard title="Class 01 — R-type" fields={["Class (2)","Class Opcode (5)", "RX (3)", "RX (3)", "RY/OPT (3)"
+                  ]} />
+                  <FormatCard title="Class 00 — Immediate" fields={["Class (2)","Class Opcode(2)", "RX (3)", "RY (3)", "IMM (6)"]} />
+                  <FormatCard title="Class 10a — Branch Immediate" fields={["Class (2)", "Class Opcode (3)","0", "IMM (10)"]} />
+                  <FormatCard title="Class 10b — Non-Branch Immediate" fields={["Class (2)", "Class Opcode (3)","1", "RX (3)", "IMM (7)"]} />
+                  <FormatCard title="Class 11 — Shift Immediate" fields={["Class (2)", "Class Opcode (3)", "RZ (3)", "RX (3)", "IMM (4)", "UNUSED(1)"]} />
+                </div>
+              </div>
             <div className="bg-white rounded shadow overflow-x-auto">
               <table className="min-w-full table-auto">
                 <thead className="bg-slate-100 text-left">
@@ -76,6 +92,7 @@ export default function App() {
                 </tbody>
               </table>
             </div>
+          </>
           )}
 
           {selectedTab === "ALU" && (
@@ -104,7 +121,7 @@ export default function App() {
 
 
 
-                <details className="mt-4 p-3 border rounded">
+                {/* <details className="mt-4 p-3 border rounded">
                   <summary className="cursor-pointer font-medium">Example: Floating-point add pipeline (high level)</summary>
                   <ol className="mt-2 pl-4 list-decimal text-slate-700">
                     <li>Operand fetch and exponent/sign extraction</li>
@@ -114,7 +131,7 @@ export default function App() {
                     <li>Round result according to current rounding mode</li>
                     <li>Pack sign, exponent, mantissa into FP register</li>
                   </ol>
-                </details>
+                </details> */}
 
               </div>
             </div>
