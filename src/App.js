@@ -5,6 +5,8 @@ import { FormatCard } from "./components/format_card.jsx";
 import { SimpleCard } from "./components/simpl_card";
 import FP_ADDER from "./images/FP_ADDER.drawio.svg";
 import FP_MULTIPLIER from "./images/FP_MULTIPLIER.drawio.svg";
+import SIGNED_ADDER from "./images/SIGNED_ADDER.drawio.svg";
+import INT_TO_FP from "./images/INT_TO_FLOAT.drawio.svg";
 
 // Single-file React app (Tailwind classes used) to document a 16-bit pipelined CPU
 // Default export a React component so it can be previewed in the canvas.
@@ -101,7 +103,7 @@ export default function App() {
               <p className="mb-4 text-slate-600">This section is designed to contain module-level documentation for all ALU components</p>
 
               <div className="space-y-4">
-                <ALUCard title="Signed Adder" lines={["Supports ADD/SUB instructions","Updates CPSR flags (N,Z,V,C) for arithmetic ops"]} svgPath={FP_ADDER} />
+                <ALUCard title="Signed Adder" lines={["Supports ADD/SUB instructions","Updates CPSR flags (N,Z,V,C) for arithmetic ops"]} svgPath={SIGNED_ADDER} />
 
                 <ALUCard title="Multiplier Unit" lines={["Supports MUL/UMUL variants","Produces high and low result halves (e.g MULH/MULL)"]} svgPath={"./images/FP_MULTIPLIER.drawio.svg"} />
 
@@ -113,7 +115,7 @@ export default function App() {
 
                 <ALUCard title="Floating-Point To Integer Converter" lines={["Supports FTOI instruction","Follows IEEE 754 Floating Point "]} svgPath={"./images/FP_SHIFTER.drawio.svg"}  />
 
-                <ALUCard title="Integer To Floating Point Converter" lines={["Supports ITOF instruction","Follows IEEE 754 Floating Point "]} svgPath={"./images/FP_SHIFTER.drawio.svg"} />
+                <ALUCard title="Integer To Floating Point Converter" lines={["Supports ITOF instruction","Follows IEEE 754 Floating Point "]} svgPath={INT_TO_FP} />
 
                 <ALUCard title="Comparator" lines={["Supports CMP instruction","Sets CPSR flags"]} svgPath={"../images/FP_SHIFTER.drawio.svg"}  />
 
