@@ -40,7 +40,7 @@ export default function App() {
         <p className="text-sm text-slate-600 mt-2">This is the documentation to the Simple_CPU v1 architecture. </p>
         <p className="text-sm font-bold text-indigo-600 mt-2 ">Designed by Toni Odujinrin, todujiinr@gmail.com</p>
         <button className="mt-4 px-4 py-2 mr-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition" onClick={() => window.open("https://github.com/Toniodujinrin/simple_alu", "_blank")}>{"See ALU Code <>"}</button>
-        <button className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition" onClick={() => window.open("https://github.com/Toniodujinrin/simple_alu", "_blank")}>{"See CPU Code <>"}</button>
+        <button className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition" onClick={() => window.open("https://github.com/Toniodujinrin/simple_cpu", "_blank")}>{"See CPU Code <>"}</button>
       </header>
 
       <main className="max-w-6xl mx-auto">
@@ -142,7 +142,7 @@ export default function App() {
           {selectedTab === "BP" && (
             <div className="bg-white rounded shadow p-6">
               <h2 className="text-2xl font-semibold mb-3">Branch Prediction</h2>
-              <p className="mb-4 text-slate-600">Describe your branch prediction strategy here — e.g., static vs dynamic, gshare/GAg/BTB, return address stack (RAS), and misprediction recovery mechanism. Include pipeline timing diagrams and where the predictor hooks into the IF/ID stages.</p>
+              <p className="mb-4 text-slate-600">This section contains detailed information about branch prediction strategies.</p>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <SimpleCard title="BTB" body="Branch target buffer indexed by PC; stores tag, target, and prediction bits. 2-cycle probe to avoid increasing fetch latency." />
