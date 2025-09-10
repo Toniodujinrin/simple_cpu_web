@@ -7,6 +7,7 @@ import FP_ADDER from "./images/FP_ADDER.drawio.svg";
 import FP_MULTIPLIER from "./images/FP_MULTIPLIER.drawio.svg";
 import SIGNED_ADDER from "./images/SIGNED_ADDER.drawio.svg";
 import INT_TO_FP from "./images/INT_TO_FLOAT.drawio.svg";
+import FP_TO_INT from "./images/FLOAT_TO_INT.drawio.svg";
 
 // Single-file React app (Tailwind classes used) to document a 16-bit pipelined CPU
 // Default export a React component so it can be previewed in the canvas.
@@ -38,7 +39,7 @@ export default function App() {
           </nav>
         </div>
         <p className="text-sm text-slate-600 mt-2">This is the documentation to the Simple_CPU v1 architecture. </p>
-        <p className="text-sm font-bold text-indigo-600 mt-2 ">Designed by Toni Odujinrin, todujiinr@gmail.com</p>
+        <p className="text-sm font-bold text-indigo-600 mt-2 ">Designed by Toni Odujinrin, todujinr@gmail.com</p>
         <button className="mt-4 px-4 py-2 mr-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition" onClick={() => window.open("https://github.com/Toniodujinrin/simple_alu", "_blank")}>{"See ALU Code <>"}</button>
         <button className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition" onClick={() => window.open("https://github.com/Toniodujinrin/simple_cpu", "_blank")}>{"See CPU Code <>"}</button>
       </header>
@@ -103,37 +104,25 @@ export default function App() {
               <p className="mb-4 text-slate-600">This section is designed to contain module-level documentation for all ALU components</p>
 
               <div className="space-y-4">
-                <ALUCard title="Signed Adder" lines={["Supports ADD/SUB instructions","Updates CPSR flags (N,Z,V,C) for arithmetic ops"]} svgPath={SIGNED_ADDER} />
+                <ALUCard title="Signed Adder" lines={["Supports ADD/SUB instructions","Updates CPSR flags (N,Z,V,C)"]} svgPath={SIGNED_ADDER} testbench_path={"https://github.com/Toniodujinrin/simple_alu/blob/main/testbench/integer_modules_test/signed_adder_test.sv"} verilog_path={"https://github.com/Toniodujinrin/simple_alu/blob/main/integer_modules/signed_adder.v"} />
 
-                <ALUCard title="Multiplier Unit" lines={["Supports MUL/UMUL variants","Produces high and low result halves (e.g MULH/MULL)"]} svgPath={"./images/FP_MULTIPLIER.drawio.svg"} />
+                <ALUCard title="Multiplier Unit" lines={["Supports MUL/UMUL variants","Employs Baugh Wooley Multiplier","Produces high and low result halves (e.g MULH/MULL)"]} svgPath={"./images/FP_MULTIPLIER.drawio.svg"} testbench_path={"https://github.com/Toniodujinrin/simple_alu/blob/main/testbench/integer_modules_test/multiplier_test.sv"} verilog_path={"https://github.com/Toniodujinrin/simple_alu/blob/main/integer_modules/multiplier.v"} />
 
-                <ALUCard title="Shifter" lines={["Supports ROR/LSR/LSL/ASR/ASL instructions","Logical/Arithmetic shifts and rotates","Supports immediate and register-specified shift amounts","Implements combinational barrel shifter for single-cycle shifts"]} svgPath={"./images/FP_SHIFTER.drawio.svg"} />
+                <ALUCard title="Shifter" lines={["Supports ROR/LSR/LSL/ASR/ASL instructions","Logical/Arithmetic shifts and rotates","Supports immediate and register-specified shift amounts","Implements combinational barrel shifter for single-cycle shifts"]} svgPath={"./images/FP_SHIFTER.drawio.svg"} testbench_path={"https://github.com/Toniodujinrin/simple_alu/blob/main/testbench/integer_modules_test/shift_test.sv"} verilog_path={"https://github.com/Toniodujinrin/simple_alu/blob/main/integer_modules/shift.v"} />
 
-                <ALUCard title="Floating-Point Adder" lines={["Supports FADD/FSUB instructions","Follows IEEE 754 Floating Point ","Incorporates Rounding and Normalization mechanisms","Sets CPSR flags with semantics for NaN, INF, signed zeros and Subnormal"]} svgPath={FP_ADDER}  />
+                <ALUCard title="Floating-Point Adder" lines={["Supports FADD/FSUB instructions","Follows IEEE 754 Floating Point ","Incorporates Rounding and Normalization mechanisms","Sets CPSR flags with semantics for NaN, INF, signed zeros and Subnormal"]} svgPath={FP_ADDER} testbench_path={"https://github.com/Toniodujinrin/simple_alu/blob/main/testbench/floating_point_modules_test/fp_adder_test.sv"} verilog_path={"https://github.com/Toniodujinrin/simple_alu/blob/main/floating_point_modules/fp_adder.v"} />
 
-                <ALUCard title="Floating-Point Multiplier" lines={["Supports FMUL instruction","Follows IEEE 754 Floating Point ","Incorporates Rounding and Normalization mechanisms","Sets CPSR flags with semantics for NaN, INF, signed zeros, and Subnormal"]} svgPath={FP_MULTIPLIER}  />
+                <ALUCard title="Floating-Point Multiplier" lines={["Supports FMUL instruction","Follows IEEE 754 Floating Point ","Incorporates Rounding and Normalization mechanisms","Sets CPSR flags with semantics for NaN, INF, signed zeros, and Subnormal"]} svgPath={FP_MULTIPLIER} testbench_path={"https://github.com/Toniodujinrin/simple_alu/blob/main/testbench/floating_point_modules_test/fp_multiplier_test.sv"} verilog_path={"https://github.com/Toniodujinrin/simple_alu/blob/main/floating_point_modules/fp_multiplier.v"} />
 
-                <ALUCard title="Floating-Point To Integer Converter" lines={["Supports FTOI instruction","Follows IEEE 754 Floating Point "]} svgPath={"./images/FP_SHIFTER.drawio.svg"}  />
+                <ALUCard title="Floating-Point To Integer Converter" lines={["Supports FTOI instruction","Follows IEEE 754 Floating Point "]} svgPath={FP_TO_INT} testbench_path={"https://github.com/Toniodujinrin/simple_alu/blob/main/testbench/floating_point_modules_test/fp_converter_test.sv"} verilog_path={"https://github.com/Toniodujinrin/simple_alu/blob/main/floating_point_modules/fp_converter.v"} />
 
-                <ALUCard title="Integer To Floating Point Converter" lines={["Supports ITOF instruction","Follows IEEE 754 Floating Point "]} svgPath={INT_TO_FP} />
+                <ALUCard title="Integer To Floating Point Converter" lines={["Supports ITOF instruction","Follows IEEE 754 Floating Point "]} svgPath={INT_TO_FP} testbench_path={"https://github.com/Toniodujinrin/simple_alu/blob/main/testbench/integer_modules_test/int_converter_test.sv"} verilog_path={"https://github.com/Toniodujinrin/simple_alu/blob/main/integer_modules/int_converter.v"} />
 
-                <ALUCard title="Comparator" lines={["Supports CMP instruction","Sets CPSR flags"]} svgPath={"../images/FP_SHIFTER.drawio.svg"}  />
+                <ALUCard title="Comparator" lines={["Supports CMP instruction","Sets CPSR flags"]} svgPath={"../images/FP_SHIFTER.drawio.svg"}   testbench_path={"https://github.com/Toniodujinrin/simple_alu/blob/main/testbench/floating_point_modules_test/fp_comparator_test.sv"} verilog_path={"https://github.com/Toniodujinrin/simple_alu/blob/main/floating_point_modules/fp_comparator.v"} />
 
-                <ALUCard title="Floating Point Comparator" lines={["Supports FCMP instruction","Sets CPSR flags with semantics for NaN, INF, signed zeros and Subnormal"]} svgPath={"./images/FP_SHIFTER.drawio.svg"}  />
+                <ALUCard title="Floating Point Comparator" lines={["Supports FCMP instruction","Sets CPSR flags with semantics for NaN, INF, signed zeros and Subnormal"]} svgPath={"./images/FP_SHIFTER.drawio.svg"}   testbench_path={"https://github.com/Toniodujinrin/simple_alu/blob/main/testbench/floating_point_modules_test/fp_comparator_test.sv"} verilog_path={"https://github.com/Toniodujinrin/simple_alu/blob/main/floating_point_modules/fp_comparator.v"} />
 
 
-
-                {/* <details className="mt-4 p-3 border rounded">
-                  <summary className="cursor-pointer font-medium">Example: Floating-point add pipeline (high level)</summary>
-                  <ol className="mt-2 pl-4 list-decimal text-slate-700">
-                    <li>Operand fetch and exponent/sign extraction</li>
-                    <li>Align mantissas by shifting smaller operand</li>
-                    <li>Perform addition or subtraction on mantissas</li>
-                    <li>Normalize result (shift and adjust exponent)</li>
-                    <li>Round result according to current rounding mode</li>
-                    <li>Pack sign, exponent, mantissa into FP register</li>
-                  </ol>
-                </details> */}
 
               </div>
             </div>
@@ -152,7 +141,7 @@ export default function App() {
           )}
         </section>
 
-        <footer className="text-sm text-slate-500 mt-8">Generated React documentation scaffold — customize content, add diagrams, and hook to your MD parser or live register values.</footer>
+        <footer className="text-sm text-slate-500 mt-8">Designed by Toni Odujinrin, 2025</footer>
       </main>
     </div>
   );
