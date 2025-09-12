@@ -39,7 +39,7 @@ export default function App() {
           </nav>
         </div>
         <p className="text-sm text-slate-600 mt-2">This is the documentation to the Simple_CPU v1 architecture. </p>
-        <p className="text-sm font-bold text-indigo-600 mt-2 ">Designed by Toni Odujinrin, todujinr@gmail.com</p>
+        <p className="text-sm font-bold text-indigo-600 mt-2 ">Designed by Toni Odujinrin, todujinrin@gmail.com</p>
         <button className="mt-4 px-4 py-2 mr-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition" onClick={() => window.open("https://github.com/Toniodujinrin/simple_alu", "_blank")}>{"See ALU Code <>"}</button>
         <button className="mt-4 px-4 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 transition" onClick={() => window.open("https://github.com/Toniodujinrin/simple_cpu", "_blank")}>{"See CPU Code <>"}</button>
       </header>
@@ -135,7 +135,10 @@ export default function App() {
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 <SimpleCard title="BTB" body="Branch target buffer indexed by PC; stores tag, target, and prediction bits. 2-cycle probe to avoid increasing fetch latency." />
-                <SimpleCard title="History-based (gshare)" body="Global history register XORed with PC bits to index pattern table — 2-bit saturating counters used for prediction." />
+                <SimpleCard title="G-share Predictor" body="Global history register XORed with PC bits to index a Pattern Table(2-bit saturating counters), used for prediction." />
+                <SimpleCard title="Local Predictor" body="Utilizes a Local History Table and Pattern History Table for prediction"/>
+                <SimpleCard title="Bimodal Predictor" body="Utilizes a Branch HIstory Table composed of '2-way' set associative arrays"/>
+
               </div>
             </div>
           )}
